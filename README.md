@@ -11,7 +11,7 @@ IVS team project.
 
 ## Contributors
 
-[xlogin00](https://github.com/PaBut)
-[xlogin00](https://github.com/nikitakoliada)
-[xlogin00](https://github.com/max0n1x)
+[xbuten00](https://github.com/PaBut)
+[xkolia00](https://github.com/nikitakoliada)
+[xpodho08](https://github.com/max0n1x)
 [xlogin00](https://github.com/turytsia)
