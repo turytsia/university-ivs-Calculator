@@ -1,0 +1,14 @@
+Assignment of project tasks:
+xbuten00 - Profiling (Dokumentation for user)
+xkolia00 - Functions
+xpodho08 - Design (animations)
+xturyt00 - Parser
+
+Communication:
+Discord
+Telegram
+
+Version control system
+Github.com
+
+Send email to xturyt00@stud.fit.vutbr.cz with github username to be added to repository
