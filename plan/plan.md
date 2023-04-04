@@ -2,18 +2,8 @@
 
 ## Project task assignments
 
-
-At the very top of the source files should be name of the team and name of the team-member who worked on this file.
-```py
-# Tripple-Double
-# @author xlogin00
-```
-
-> **Note**
-> Each member of the team must have his own branch. Every source file must contain doxygen comments and header, defined above. Deadline for each member is 1 week (ends 01.03.2023)
-
-### Design (xpodho08)
-Implement drafts in `/mock` using [tkinter](https://docs.python.org/3/library/tkinter.html).
+### Calculator design (xpodho08)
+Implement drafts in `/mock` using [tkinter](https://docs.python.org/3/library/tkinter.html) and special library for tkinter.
 
 **Requirements**
 Design implementation should be written in `/src/view/view.py`. Folder `view` has to contain all the necessary files for `view.py`.
@@ -51,7 +41,7 @@ E -> e
 
 Create priority table and parser. Parser must use functions implmented by `xkolia00 `. After input is validated, parsed and calculated, return result back to view.
 
-### Math (xkolia00 )
+### Math.py (xkolia00 )
 Math implementation should be written in `/src/math/math.py`. Folder `math` has to contain all the necessary files for `math.py`.
 
 **Requirements**
@@ -81,6 +71,7 @@ $s = \sqrt{\frac{1}{N-1}(\sum_{i=1}^{N}x_i^2-N\overline{x}^2)}$
 $\overline{x} = \frac{1}{N}\sum_i^Nx_i$
 
 ### User documentation (xbuten00)
+Documentation will be written by xbuten00
 
 ## Communication
 Team uses for communication **Telegram** and **Discord**.
