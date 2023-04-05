@@ -11,6 +11,11 @@ class ParserError(Exception):
     def __init__(self):
         super().__init__("Syntax error occured")
 
+
+class ValueTooLongError(Exception):
+    def __init__(self):
+        super().__init__("Value is too long")
+
 def parse(expr: str) -> str:
     if not expr:
         return ""
@@ -20,17 +25,28 @@ def parse(expr: str) -> str:
         "+": 1, 
         "-": 1, 
         "*": 2, 
-        "/": 2, 
+        "/": 2,
+        "√": 3,
         "^":3, 
         ")":4}
 
     operator_stack = []
     operand_stack = []
 
+    def is_number(n: str):
+        try:
+            if n.isdigit():
+                return True
+            float(n)
+            return True
+        except Exception:
+            return False
+
     def apply_operator():
         b = operand_stack.pop()
         a = operand_stack.pop()
         op = operator_stack.pop()
+
         if op == "+":
             operand_stack.append(_sum(a, b))
         elif op == "-":
@@ -46,21 +62,32 @@ def parse(expr: str) -> str:
         a = operand_stack.pop()
         operand_stack.append(fac(a))
 
+    def apply_square():
+        a = operand_stack.pop()
+        operator_stack.pop()
+        operand_stack.append(square_root(a))
+
     try:
         expr = expr.split(" ")
         for token in expr:
-            if token.isdigit():
-                operand_stack.append(int(token))
-            elif token in "+-*/^":
+            if is_number(token):
+                operand_stack.append(float(token))
+            elif token in "+-*/^√":
                 # Parse operator
-                while operator_stack and precedence[token] <= precedence[operator_stack[-1]]:
-                    apply_operator()
+                while operator_stack and operand_stack and precedence[token] <= precedence[operator_stack[-1]]:
+                    if operator_stack[-1] == "√":
+                        apply_square()
+                    else:
+                        apply_operator()
                 operator_stack.append(token)
             elif token == "(":
                 operator_stack.append(token)
             elif token == ")":
                 while operator_stack[-1] != "(":
-                    apply_operator()
+                    if operator_stack[-1] == "√":
+                        apply_square()
+                    else:
+                        apply_operator()
                 operator_stack.pop()
             elif token == "!":
                 apply_factorial()
@@ -68,9 +95,23 @@ def parse(expr: str) -> str:
                 raise ParserError()
 
         while operator_stack:
-            apply_operator()
+            if operator_stack[-1] == "√":
+                apply_square()
+            else:
+                apply_operator()
 
-        return operand_stack[0]
+        result = operand_stack[0]
 
-    except:
+        if result < 999_999_999_999:
+            return str(operand_stack[0]).rstrip('0').rstrip('.')
+        else:
+            return "{:.2E}".format(operand_stack[0])
+
+    except RecursionError:
+        raise ValueTooLongError()
+    except Exception as e:
+        print(e)
         raise ParserError()
+
+
+print(parse("2 + 2.2 * 2"))
