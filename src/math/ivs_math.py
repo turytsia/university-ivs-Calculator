@@ -37,6 +37,6 @@ def square_root(a):
         x = a
         y = 1
         while x > y:
-            x = (x + y) // 2
-            y = a // x
+            x = (x + y) / 2
+            y = a / x
         return x
