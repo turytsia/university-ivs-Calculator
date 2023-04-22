@@ -3,6 +3,7 @@
 ## Project task assignments
 
 
+
 At the very top of the source files should be name of the team and name of the team-member who worked on this file.
 ```py
 # Tripple-Double
@@ -51,7 +52,9 @@ E -> e
 
 Create priority table and parser. Parser must use functions implmented by `xkolia00 `. After input is validated, parsed and calculated, return result back to view.
 
+
 ### Math (xkolia00 )
+
 Math implementation should be written in `/src/math/math.py`. Folder `math` has to contain all the necessary files for `math.py`.
 
 **Requirements**
@@ -81,6 +84,7 @@ $s = \sqrt{\frac{1}{N-1}(\sum_{i=1}^{N}x_i^2-N\overline{x}^2)}$
 $\overline{x} = \frac{1}{N}\sum_i^Nx_i$
 
 ### User documentation (xbuten00)
+Documentation will be written by xbuten00
 
 ## Communication
 Team uses for communication **Telegram** and **Discord**.

@@ -1,4 +1,6 @@
-import os, sys, platform
+import os
+import sys
+import platform
 
 if platform.system() == "Windows":
     sys.path.insert(0, os.getcwd())
@@ -6,6 +8,7 @@ else:
     sys.path.insert(0, os.path.abspath(".."))
 
 from src.math.ivs_math import sum as _sum, sub, mult, div, fac, exp, square_root
+
 
 class ParserError(Exception):
     def __init__(self):
@@ -16,19 +19,20 @@ class ValueTooLongError(Exception):
     def __init__(self):
         super().__init__("Value is too long")
 
+
 def parse(expr: str) -> str:
     if not expr:
         return ""
 
     precedence = {
         "(": 0,
-        "+": 1, 
-        "-": 1, 
-        "*": 2, 
+        "+": 1,
+        "-": 1,
+        "*": 2,
         "/": 2,
         "√": 3,
-        "^":3, 
-        ")":4}
+        "^": 3,
+        ")": 4}
 
     operator_stack = []
     operand_stack = []
@@ -70,6 +74,7 @@ def parse(expr: str) -> str:
     try:
         expr = expr.split(" ")
         for token in expr:
+            print(operand_stack)
             if is_number(token):
                 operand_stack.append(float(token))
             elif token in "+-*/^√":
@@ -80,7 +85,7 @@ def parse(expr: str) -> str:
                     else:
                         apply_operator()
                 operator_stack.append(token)
-            elif token == "(":
+            elif token == "(" or token == "√" or token == "-":
                 operator_stack.append(token)
             elif token == ")":
                 while operator_stack[-1] != "(":
@@ -112,6 +117,3 @@ def parse(expr: str) -> str:
     except Exception as e:
         print(e)
         raise ParserError()
-
-
-print(parse("2 + 2.2 * 2"))
