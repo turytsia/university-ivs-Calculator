@@ -74,7 +74,6 @@ def parse(expr: str) -> str:
     try:
         expr = expr.split(" ")
         for token in expr:
-            print(operand_stack)
             if is_number(token):
                 operand_stack.append(float(token))
             elif token in "+-*/^√":
@@ -115,5 +114,4 @@ def parse(expr: str) -> str:
     except RecursionError:
         raise ValueTooLongError()
     except Exception as e:
-        print(e)
         raise ParserError()
