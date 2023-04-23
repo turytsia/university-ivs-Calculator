@@ -7,17 +7,22 @@ if platform.system() == "Windows":
 else:
     sys.path.insert(0, os.path.abspath(".."))
 
-from src.math.ivs_math import sum as _sum, sub, mult, div, fac, exp, square_root
+import src.math.ivs_math as m
 
 
 class ParserError(Exception):
-    def __init__(self):
-        super().__init__("Syntax error occured")
+    def __init__(self, msg=None):
+        super().__init__(msg or "Syntax error")
 
 
 class ValueTooLongError(Exception):
     def __init__(self):
-        super().__init__("Value is too long")
+        super().__init__("∞")
+
+
+class IntegerError(Exception):
+    def __init__(self, msg):
+        super().__init__(msg)
 
 
 def parse(expr: str) -> str:
@@ -32,12 +37,20 @@ def parse(expr: str) -> str:
         "/": 2,
         "√": 3,
         "^": 3,
-        ")": 4}
+        ")": 4
+    }
 
     operator_stack = []
     operand_stack = []
 
-    def is_number(n: str):
+    def _safe(n: int | float):
+        result = round(n, 10)
+        try:
+            return int(result) if result.is_integer() else result
+        except AttributeError:
+            return int(result)
+
+    def _isnumber(n: str):
         try:
             if n.isdigit():
                 return True
@@ -46,74 +59,69 @@ def parse(expr: str) -> str:
         except Exception:
             return False
 
-    def apply_operator():
+    def _apply_binary_op():
         b = operand_stack.pop()
         a = operand_stack.pop()
         op = operator_stack.pop()
 
         if op == "+":
-            operand_stack.append(_sum(a, b))
+            operand_stack.append(_safe(m.sum(a, b)))
         elif op == "-":
-            operand_stack.append(sub(a, b))
+            operand_stack.append(_safe(m.sub(a, b)))
         elif op == "*":
-            operand_stack.append(mult(a, b))
+            operand_stack.append(_safe(m.mult(a, b)))
         elif op == "/":
-            operand_stack.append(div(a, b))
+            operand_stack.append(_safe(m.div(a, b)))
+        elif op == "/":
+            operand_stack.append(_safe(m.div(a, b)))
         elif op == "^":
-            operand_stack.append(exp(a, b))
+            if b < 0 or isinstance(b, float):
+                raise IntegerError("exp >= 0 ∧ exp ∈ Z")
+            operand_stack.append(_safe(m.exp(a, b)))
+        elif op == "√":
+            if b < 0 or isinstance(a, float):
+                raise IntegerError("exp >= 0 ∧ exp ∈ Z")
+            operand_stack.append(_safe(m.exp(b, 1 / a)))
 
-    def apply_factorial():
+    def _apply_factorial():
         a = operand_stack.pop()
-        operand_stack.append(fac(a))
-
-    def apply_square():
-        a = operand_stack.pop()
-        operator_stack.pop()
-        operand_stack.append(square_root(a))
+        if a < 0 or isinstance(a, float):
+            raise IntegerError("n!, where n ∈ Z")
+        operand_stack.append(_safe(m.fac(a)))
 
     try:
         expr = expr.split(" ")
-        for token in expr:
-            print(operand_stack)
-            if is_number(token):
-                operand_stack.append(float(token))
-            elif token in "+-*/^√":
-                # Parse operator
-                while operator_stack and operand_stack and precedence[token] <= precedence[operator_stack[-1]]:
-                    if operator_stack[-1] == "√":
-                        apply_square()
-                    else:
-                        apply_operator()
+        for i, token in enumerate(expr):
+            if _isnumber(token):
+                operand_stack.append(
+                    int(token) if token.isdigit() else float(token))
+            elif token == "-" and (i == 0 or expr[i-1] in "+-*/^√("):
+                operand_stack.append(0)
                 operator_stack.append(token)
-            elif token == "(" or token == "√" or token == "-":
+            elif token in "+*/^√-":
+                while operator_stack and operand_stack and precedence[token] <= precedence[operator_stack[-1]]:
+                    _apply_binary_op()
+                operator_stack.append(token)
+            elif token == "(":
                 operator_stack.append(token)
             elif token == ")":
                 while operator_stack[-1] != "(":
-                    if operator_stack[-1] == "√":
-                        apply_square()
-                    else:
-                        apply_operator()
+                    _apply_binary_op()
                 operator_stack.pop()
             elif token == "!":
-                apply_factorial()
+                if operator_stack and operator_stack[-1] == "-":
+                    _apply_binary_op()
+                _apply_factorial()
             else:
-                raise ParserError()
+                raise ParserError(f"'{token}' is not valid ")
 
         while operator_stack:
-            if operator_stack[-1] == "√":
-                apply_square()
-            else:
-                apply_operator()
+            _apply_binary_op()
 
-        result = operand_stack[0]
+        result, = operand_stack
 
-        if result < 999_999_999_999:
-            return str(operand_stack[0]).rstrip('0').rstrip('.')
-        else:
-            return "{:.2E}".format(operand_stack[0])
-
+        return str(_safe(round(result, 10))) if result < 999_999_999_999 else "{:.2E}".format(result)
     except RecursionError:
         raise ValueTooLongError()
-    except Exception as e:
-        print(e)
-        raise ParserError()
+    except (Exception) as e:
+        raise ParserError(str(e))
