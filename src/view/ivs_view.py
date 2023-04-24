@@ -96,13 +96,14 @@ class Tooltips:
                                             width=420, height=35)
         info_label.place(relx=0.5, rely=0.93, anchor=tkinter.CENTER)
 
-        operator_label = customtkinter.CTkLabel(master=self.helpwindow, font=("Arial bold", 20),
-                                                text="", width=420, height=35)
-        operator_label.place(relx=0.5, rely=0.05, anchor=tkinter.CENTER)
+        operator_label = customtkinter.CTkLabel(master=self.helpwindow, font=("Arial", 15),
+                                                text="", width=420, height=300, justify=tkinter.LEFT)
+        operator_label.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
 
         if target == "!":
             self.helpwindow.title("Usage: Factorial (!)")
-            operator_label.configure(text="Factorial (!)")
+            operator_label.configure(text="""
+    '!' (factorial) is a unary operator, meaning,""")
 
         elif target == "√":
             self.helpwindow.title("Usage: Root (√)")
@@ -122,11 +123,25 @@ class Tooltips:
 
         elif target == "-":
             self.helpwindow.title("Usage: Subtraction (-)")
-            operator_label.configure(text="Subtraction (-)")
+            operator_label.configure(text="""
+    '-' (minus) is a binary operator, 
+    it is used with 2 operands and it has following syntax: 
+    a - b, where a,b  ∈ Q (floating point numbers). 
+    Therefore, in order to use it, 
+    as a first step input first operand of your choice followed by '-', 
+    followed by second operand and press '='. 
+    As the output you will get difference of your operands.""")
 
         elif target == "+":
             self.helpwindow.title("Usage: Addition (+)")
-            operator_label.configure(text="Addition (+)")
+            operator_label.configure(text="""
+    '+' (sum) is a binary operator, meaning, 
+    it is used with 2 operands and it has following syntax: 
+    a + b, where a,b  ∈ Q (floating point numbers). 
+    Therefore, in order to use it, 
+    as a first step input first operand of your choice 
+    followed by '+', followed by second operand and press '='. 
+    As the output you will get sum of your operands.""")
 
         elif target == "()":
             self.helpwindow.title("Usage: Brackets ( '(' or ')' )")
