@@ -19,6 +19,7 @@ class ZeroDivisonError(Exception):
     def __init__(self):
         super().__init__("Cannot divide by zero")
 
+
 def sum(a: float, b: float) -> float:
     """ Sums 2 operands up.
     @param a   first operand.
@@ -26,6 +27,7 @@ def sum(a: float, b: float) -> float:
     @return  sum of param a and b
     """
     return a + b
+
 
 def sub(a: float, b: float) -> float:
     """ Subtracts 2 operands up.

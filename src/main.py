@@ -27,12 +27,14 @@ else:
 
 from src.view.ivs_view import Calculator
 
+
 def main():
     """ Initial method
     """
     calculator = Calculator()
     calculator.create_main_window()
     calculator.run()
+
 
 if __name__ == "__main__":
     main()

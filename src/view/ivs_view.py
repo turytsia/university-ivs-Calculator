@@ -418,17 +418,19 @@ class Calculator:
             master=self.app, text="", width=290, height=60, font=("Arial", 30))
         small_label.place(relx=0.5, rely=0.05, anchor=tkinter.CENTER)
 
-        label_img = customtkinter.CTkImage(light_image=Image.open(os.path.join(os.path.dirname(__file__), 'light_shadow.png')),
+        label_img = customtkinter.CTkImage(light_image=Image.open(os.path.join(
+                                            os.path.dirname(__file__), 'light_shadow.png')),
                                            dark_image=Image.open(os.path.join(
-                                               os.path.dirname(__file__), 'shadow.png')),
+                                            os.path.dirname(__file__), 'shadow.png')),
                                            size=(425, 105))
         label = customtkinter.CTkLabel(master=self.app, image=label_img, text="", width=425, height=100,
                                        font=("Arial", 60))
         label.place(relx=0.5, rely=0.18, anchor=tkinter.CENTER)
 
-        img_theme = customtkinter.CTkImage(light_image=Image.open(os.path.join(os.path.dirname(__file__), "night-mode.png")),
+        img_theme = customtkinter.CTkImage(light_image=Image.open(os.path.join(
+                                            os.path.dirname(__file__), "night-mode.png")),
                                            dark_image=Image.open(os.path.join(
-                                               os.path.dirname(__file__), "brightness.png")),
+                                            os.path.dirname(__file__), "brightness.png")),
                                            size=(30, 30))
         buttonChangeTheme = customtkinter.CTkButton(master=self.app, image=img_theme, text="",
                                                     command=lambda: self.change_theme(), fg_color="transparent",
@@ -518,9 +520,10 @@ class Calculator:
                                              fg_color="transparent", text_color=("black", "white"), font=("Arial", 40))
         buttonZero.place(relx=0.38, rely=0.92, anchor=tkinter.CENTER)
 
-        img_radical = customtkinter.CTkImage(light_image=Image.open(os.path.join(os.path.dirname(__file__), 'root.png')),
+        img_radical = customtkinter.CTkImage(light_image=Image.open(os.path.join(
+                                                os.path.dirname(__file__), 'root.png')),
                                              dark_image=Image.open(os.path.join(
-                                                 os.path.dirname(__file__), 'root.png')),
+                                                os.path.dirname(__file__), 'root.png')),
                                              size=(40, 40))
         buttonRadical = customtkinter.CTkButton(master=self.app, image=img_radical, text="",
                                                 command=lambda: self.label_changer(
@@ -564,9 +567,10 @@ class Calculator:
                                               fg_color="transparent", text_color="red", font=("Arial", 40))
         buttonClear.place(relx=0.62, rely=0.92, anchor=tkinter.CENTER)
 
-        img_factorial = customtkinter.CTkImage(light_image=Image.open(os.path.join(os.path.dirname(__file__), 'factorial.png')),
+        img_factorial = customtkinter.CTkImage(light_image=Image.open(os.path.join(
+                                                os.path.dirname(__file__), 'factorial.png')),
                                                dark_image=Image.open(os.path.join(
-                                                   os.path.dirname(__file__), 'factorial.png')),
+                                                os.path.dirname(__file__), 'factorial.png')),
                                                size=(40, 40))
         buttonFactorial = customtkinter.CTkButton(master=self.app, image=img_factorial, text="",
                                                   command=lambda: self.label_changer(
@@ -628,4 +632,3 @@ class Calculator:
         """
 
         self.app.mainloop()
-
