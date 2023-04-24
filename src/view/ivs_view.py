@@ -15,7 +15,8 @@ if platform.system() == "Windows":
 else:
     sys.path.append(os.path.abspath(".."))
 
-from src.parser.ivs_parser import parse, ParserError
+from src.parser.ivs_parser import parse, ParserError, ValueTooLongError, IntegerError
+from src.math.ivs_math import ZeroDivisonError
 
 
 def regex(expression, mode):
@@ -260,6 +261,24 @@ class Calculator:
         self.tooltips.create_help_window()
         self.tooltips.run()
 
+    # def update_size(self, label):
+    #     widget_width = 425
+    #
+    #     if len(label.cget("text")) == 0:
+    #         return
+    #
+    #     print(label.cget("font")[1])
+    #
+    #     if len(label.cget("text")) > 12 and label.cget("font")[1] > 20:
+    #
+    #         label.configure(font=("Arial", 55))
+    #         self.app.update()
+    #
+    #     elif len(label.cget("text")) < 12 and label.cget("font")[1] < 60:
+    #
+    #         label.configure(font=("Arial", 60))
+    #         self.app.update()
+
     def label_changer(self, label, small_label, add):
         """
             Handle button clicks and update the labels accordingly.
@@ -280,23 +299,35 @@ class Calculator:
             return
 
         if add == "last":
-            label.configure(text=label.cget("text")[:-1])
+            try:
+                label.configure(text=label.cget("text")[:-1])
+
+            except TypeError:
+                label.configure(text="")
+
             self.app.update()
             return
 
         if add.isalpha():
             return
 
-        if label.cget("text") == "Error":
-            label.configure(text="")
-            self.app.update()
-
         elif add == "=":
             small_label.configure(text=label.cget("text"))
             try:
                 label.configure(text=parse(regex(label.cget("text"), "spaces").replace("÷", "/")))
-            except ParserError or ValueError:
-                label.configure(text="Error")
+
+            except ParserError as e:
+                label.configure(text=e)
+
+            except IntegerError as e:
+                label.configure(text=e)
+
+            except ValueTooLongError as e:
+                label.configure(text=e)
+
+            except ZeroDivisionError as e:
+                label.configure(text=e)
+
             self.app.update()
             return
 
@@ -306,7 +337,11 @@ class Calculator:
         except ValueError:
             return
 
-        label.configure(text=label.cget("text") + add)
+        try:
+            label.configure(text=label.cget("text") + add)
+        except TypeError:
+            label.configure(text=add)
+
         self.app.update()
 
     def create_main_window(self):
@@ -493,6 +528,7 @@ class Calculator:
         self.app.bind("<Return>", lambda event: self.label_changer(label, small_label, "="))
         self.app.bind("<Escape>", lambda event: self.app.destroy())
         self.app.bind("<Delete>", lambda event: self.label_changer(label, small_label, "cls"))
+        # self.app.bind("<Configure>", lambda event: self.update_size(label))
 
     def run(self):
         """

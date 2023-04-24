@@ -1,3 +1,7 @@
+class ZeroDivisonError(Exception):
+    def __init__(self):
+        super().__init__("Cannot divide by zero")
+
 # returns the sum of a and b
 def sum(a, b):
     return a + b
@@ -15,7 +19,7 @@ def div(a, b):
     if b != 0:
         return a / b
     else:
-        raise Exception("Cannot divide by 0")
+        raise ZeroDivisonError()
 
 # returns the factorial of a (the product of all positive integers up to a)
 def fac(a):
