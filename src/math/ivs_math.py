@@ -15,6 +15,10 @@
 
 # Functions
 
+class ZeroDivisonError(Exception):
+    def __init__(self):
+        super().__init__("Cannot divide by zero")
+
 def sum(a: int|float, b: int|float) -> int|float:
     """ Sums 2 operands up.
     @param a   first operand.
@@ -50,7 +54,7 @@ def div(a: int | float, b: int | float) -> int | float:
     if b != 0:
         return a / b
     else:
-        raise Exception("Cannot divide by 0")
+        raise ZeroDivisonError()
 
 
 def fac(a: int) -> int:
