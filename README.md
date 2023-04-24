@@ -6,8 +6,8 @@ Windows 64bit
 ## Autori
 
 Tripple-Double
-- xbuten00 jmeno prijmeni 
-- xkolia00 jmeno prijmeni 
+- xbuten00 Pavlo Butenko
+- xkolia00 Nikita Koliada
 - xpodho08 Maksym Podhornyi
 - xturyt00 Oleksandr Turytsia
 

@@ -384,9 +384,6 @@ class Calculator:
             except ValueTooLongError as e:
                 label.configure(text=e)
 
-            except ZeroDivisionError as e:
-                label.configure(text=e)
-
             self.app.update()
             return
 

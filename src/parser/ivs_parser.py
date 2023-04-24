@@ -25,6 +25,7 @@ else:
 
 import src.math.ivs_math as m
 
+
 class ParserError(Exception):
     """ ParseError exception.
     Defines exception for syntax/parsing errors.
@@ -177,5 +178,7 @@ def parse(expr: str) -> str:
         return str(_safe(round(result, 10))) if result < 999_999_999_999 else "{:.2E}".format(result)
     except RecursionError:
         raise ValueTooLongError()
-    except (Exception) as e:
-        raise ParserError(str(e))
+    except IndexError as e:
+        raise ParserError("Error")
+    except m.ZeroDivisonError:
+        raise ParserError("Division by zero")
