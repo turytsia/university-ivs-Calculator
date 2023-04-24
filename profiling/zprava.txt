@@ -1,0 +1,8 @@
+The profiler results show that the sum() function in the ivs_math.py module takes the most time, with a cumulative time of 0.001 seconds. This function calculates the sum of a list of numbers and is called a total of 6000 times in the main program.
+
+The exp() function takes the second most time, with a cumulative time of 0.001 seconds. This function calculates the exponential of a given number and is called a total of 1001 times in the main program.
+
+The sub(), mult(), and div() functions take a negligible amount of time to execute, with a cumulative time of 0.000 seconds. The sub() function calculates the difference between two numbers, while the mult() function calculates their product, and the div() function calculates their quotient. These functions are called only 2 times each in the main program, indicating that the program does not perform many arithmetic operations involving subtraction, multiplication, or division.
+
+In general, the functions defined in ivs_math.py are relatively lightweight and do not consume a significant amount of time. Therefore, optimizing these functions would not significantly improve the overall performance. 
+Execution time for 1000 numbers doesn't exceed 0.01 seconds. In case of 1000000 numbers program ran for no longer than 2 seconds.
