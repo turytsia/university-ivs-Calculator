@@ -19,9 +19,9 @@ import sys
 import platform
 
 if platform.system() == "Windows":
-    sys.path.insert(0, os.getcwd())
+    sys.path.append(os.getcwd())
 else:
-    sys.path.insert(0, os.path.abspath(".."))
+    sys.path.append(os.path.dirname(os.path.abspath("") + "/src"))
 
 import src.math.ivs_math as m
 
@@ -85,7 +85,7 @@ def parse(expr: str) -> str:
     operator_stack = []
     operand_stack = []
 
-    def _safe(n: int | float) -> int | float:
+    def _safe(n: float):
         """ Defines type of n.
         @param n
         @return  typed n.

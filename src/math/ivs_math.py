@@ -19,7 +19,7 @@ class ZeroDivisonError(Exception):
     def __init__(self):
         super().__init__("Cannot divide by zero")
 
-def sum(a: int|float, b: int|float) -> int|float:
+def sum(a: float, b: float) -> float:
     """ Sums 2 operands up.
     @param a   first operand.
     @param b   second operand.
@@ -27,7 +27,7 @@ def sum(a: int|float, b: int|float) -> int|float:
     """
     return a + b
 
-def sub(a: int|float, b: int|float) -> int|float:
+def sub(a: float, b: float) -> float:
     """ Subtracts 2 operands up.
     @param a   first operand.
     @param b   second operand.
@@ -36,7 +36,7 @@ def sub(a: int|float, b: int|float) -> int|float:
     return a - b
 
 
-def mult(a: int | float, b: int | float) -> int | float:
+def mult(a: float, b: float) -> float:
     """ Multiplies 2 operands up.
     @param a   first operand.
     @param b   second operand.
@@ -45,7 +45,7 @@ def mult(a: int | float, b: int | float) -> int | float:
     return a * b
 
 
-def div(a: int | float, b: int | float) -> int | float:
+def div(a: float, b: float) -> float:
     """ Divides 2 operands up.
     @param a   first operand.
     @param b   second operand.
@@ -67,7 +67,7 @@ def fac(a: int) -> int:
     return a * fac(a-1)
 
 
-def exp(a: int | float, b: int) -> int | float:
+def exp(a: float, b: int) -> float:
     """ Takes power of b on argument a.
     @param a   first operand.
     @param b   second operand (power).
@@ -78,7 +78,7 @@ def exp(a: int | float, b: int) -> int | float:
 # returns the result of square root of a
 
 
-def square_root(a: int | float) -> int | float:
+def square_root(a: float) -> float:
     """ Applies square root onto given value.
     @param a  operand.
     @return  square of a
