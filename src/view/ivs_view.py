@@ -13,10 +13,9 @@ from PIL import Image
 if platform.system() == "Windows":
     sys.path.append(os.getcwd())
 else:
-    sys.path.append(os.path.abspath(".."))
+    sys.path.append(os.path.dirname(os.path.abspath("") + "/src"))
 
 from src.parser.ivs_parser import parse, ParserError, ValueTooLongError, IntegerError
-from src.math.ivs_math import ZeroDivisonError
 
 
 def regex(expression, mode):
@@ -103,23 +102,43 @@ class Tooltips:
         if target == "!":
             self.helpwindow.title("Usage: Factorial (!)")
             operator_label.configure(text="""
-    '!' (factorial) is a unary operator, meaning,""")
+    '!' (factorial) is a unary operator that calculates 
+    the factorial of the operand. 
+    It only applies to non-negative integers, 
+    and is represented by an exclamation mark. 
+    The factorial of a non-negative integer n is the product 
+    of all positive integers less than or equal to n. 
+    For example, 5! = 5 * 4 * 3 * 2 * 1 = 120.""")
 
         elif target == "√":
             self.helpwindow.title("Usage: Root (√)")
-            operator_label.configure(text="Root (√)")
+            operator_label.configure(text="""
+    '√' (root) is a unary operator that calculates the root 
+    of the operand with a changable degree. 
+    For example, to find the square root of 16, 
+    you would use the notation 16^(1/2) = 4. 
+    Similarly, the cubic root of 27 can be written as 27^(1/3) = 3.""")
 
         elif target == "^":
             self.helpwindow.title("Usage: Power (^)")
-            operator_label.configure(text="Power (^)")
+            operator_label.configure(text="""
+    '^' (exponentiation) is a binary operator that raises 
+    the first operand to the power of the second operand. 
+    For example, 2^3 = 8.""")
 
         elif target == "÷":
             self.helpwindow.title("Usage: Division (÷ or /)")
-            operator_label.configure(text="Division (÷ or /)")
+            operator_label.configure(text="""
+    '÷ or /' (division) is a binary operator that divides 
+    the first operand by the second operand. 
+    For example, 6 ÷ 2 = 3 or 6 / 2 = 3.""")
 
         elif target == "*":
             self.helpwindow.title("Usage: Multiplication (*)")
-            operator_label.configure(text="Multiplication (*)")
+            operator_label.configure(text="""
+    '*' (multiplication) is a binary operator 
+    that multiplies two operands. 
+    For example, 2 * 3 = 6.""")
 
         elif target == "-":
             self.helpwindow.title("Usage: Subtraction (-)")
@@ -145,11 +164,20 @@ class Tooltips:
 
         elif target == "()":
             self.helpwindow.title("Usage: Brackets ( '(' or ')' )")
-            operator_label.configure(text="Brackets ( '(' or ')' )")
+            operator_label.configure(text="""
+    '()' (parentheses) are used to group expressions and to 
+    indicate the order in which operations should be performed. 
+    For example, to evaluate (2 + 3) * 4, 
+    you would first add 2 and 3, 
+    then multiply the result by 4 to get 20.""")
 
         elif target == ".":
             self.helpwindow.title("Usage: Point (.)")
-            operator_label.configure(text="Point (.)")
+            operator_label.configure(text="""
+'.' (dot or decimal point) is used to separate the integer part of 
+a number from its decimal part in decimal notation. 
+For example, 3.14 represents the number 
+'three and fourteen hundredths'""")
 
         else:
             return
