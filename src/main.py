@@ -10,7 +10,7 @@
 #
 # @section author_doxygen_example Author(s)
 # - Created by Maksym Podhornyi (xpodho08).
-# - Modified by Oleksandr Turytsia (xturyt00) on 24/04/2023.
+# - Modified by Oleksandr Turytsia (xturyt00) on 25/04/2023.
 #
 # Copyright (c) GNU GENERAL PUBLIC LICENSE version 3
 
