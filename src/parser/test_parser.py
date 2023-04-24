@@ -1,3 +1,19 @@
+##
+# @file ivs_parser.py
+#
+# @brief Expression parser tesing
+#
+# @section description_doxygen_example Description
+# This Python file implements integration tests using together parse function and math functions
+#
+# @section author_doxygen_example Author(s)
+# - Created by Oleksandr Turytsia (xturyt00).
+# - Modified by Oleksandr Turytsia (xturyt00) on 24/04/2023.
+#
+# Copyright (c) GNU GENERAL PUBLIC LICENSE version 3
+
+# Functions
+
 import unittest
 from ivs_parser import parse, ParserError, ValueTooLongError
 

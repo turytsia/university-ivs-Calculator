@@ -1,3 +1,19 @@
+##
+# @file test_math.py
+#
+# @brief Unit tests for ivs_math.py
+#
+# @section description_doxygen_example Description
+# This Python file implements unit testing for ivs_math.py
+#
+# @section author_doxygen_example Author(s)
+# - Created by Nikita Koliada (xkolia00).
+# - Modified by Oleksandr Turytsia (xturyt00) on 24/04/2023.
+#
+# Copyright (c) GNU GENERAL PUBLIC LICENSE version 3
+
+# Functions
+
 import unittest
 import ivs_math as m
 
