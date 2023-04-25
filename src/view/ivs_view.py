@@ -31,7 +31,6 @@ else:
 
 import src.customtkinter as customtkinter
 from src.parser.ivs_parser import parse, ParserError, ValueTooLongError, IntegerError
-from src.math.ivs_math import ZeroDivisonError
 
 
 def regex(expression, mode):
@@ -111,45 +110,89 @@ class Tooltips:
                                             width=420, height=35)
         info_label.place(relx=0.5, rely=0.93, anchor=tkinter.CENTER)
 
-        operator_label = customtkinter.CTkLabel(master=self.helpwindow, font=("Arial bold", 20),
-                                                text="", width=420, height=35)
-        operator_label.place(relx=0.5, rely=0.05, anchor=tkinter.CENTER)
+        operator_label = customtkinter.CTkLabel(master=self.helpwindow, font=("Arial", 15),
+                                                text="", width=420, height=300, justify=tkinter.LEFT)
+        operator_label.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
 
         if target == "!":
             self.helpwindow.title("Usage: Factorial (!)")
-            operator_label.configure(text="Factorial (!)")
+            operator_label.configure(text="""
+    '!' (factorial) is a unary operator that calculates 
+    the factorial of the operand. 
+    It only applies to non-negative integers, 
+    and is represented by an exclamation mark. 
+    The factorial of a non-negative integer n is the product 
+    of all positive integers less than or equal to n. 
+    For example, 5! = 5 * 4 * 3 * 2 * 1 = 120.""")
 
         elif target == "√":
             self.helpwindow.title("Usage: Root (√)")
-            operator_label.configure(text="Root (√)")
+            operator_label.configure(text="""
+    '√' (root) is a unary operator that calculates the root 
+    of the operand with a changable degree. 
+    For example, to find the square root of 16, 
+    you would use the notation 16^(1/2) = 4. 
+    Similarly, the cubic root of 27 can be written as 27^(1/3) = 3.""")
 
         elif target == "^":
             self.helpwindow.title("Usage: Power (^)")
-            operator_label.configure(text="Power (^)")
+            operator_label.configure(text="""
+    '^' (exponentiation) is a binary operator that raises 
+    the first operand to the power of the second operand. 
+    For example, 2^3 = 8.""")
 
         elif target == "÷":
             self.helpwindow.title("Usage: Division (÷ or /)")
-            operator_label.configure(text="Division (÷ or /)")
+            operator_label.configure(text="""
+    '÷ or /' (division) is a binary operator that divides 
+    the first operand by the second operand. 
+    For example, 6 ÷ 2 = 3 or 6 / 2 = 3.""")
 
         elif target == "*":
             self.helpwindow.title("Usage: Multiplication (*)")
-            operator_label.configure(text="Multiplication (*)")
+            operator_label.configure(text="""
+    '*' (multiplication) is a binary operator 
+    that multiplies two operands. 
+    For example, 2 * 3 = 6.""")
 
         elif target == "-":
             self.helpwindow.title("Usage: Subtraction (-)")
-            operator_label.configure(text="Subtraction (-)")
+            operator_label.configure(text="""
+    '-' (minus) is a binary operator, 
+    it is used with 2 operands and it has following syntax: 
+    a - b, where a,b  ∈ Q (floating point numbers). 
+    Therefore, in order to use it, 
+    as a first step input first operand of your choice followed by '-', 
+    followed by second operand and press '='. 
+    As the output you will get difference of your operands.""")
 
         elif target == "+":
             self.helpwindow.title("Usage: Addition (+)")
-            operator_label.configure(text="Addition (+)")
+            operator_label.configure(text="""
+    '+' (sum) is a binary operator, meaning, 
+    it is used with 2 operands and it has following syntax: 
+    a + b, where a,b  ∈ Q (floating point numbers). 
+    Therefore, in order to use it, 
+    as a first step input first operand of your choice 
+    followed by '+', followed by second operand and press '='. 
+    As the output you will get sum of your operands.""")
 
         elif target == "()":
             self.helpwindow.title("Usage: Brackets ( '(' or ')' )")
-            operator_label.configure(text="Brackets ( '(' or ')' )")
+            operator_label.configure(text="""
+    '()' (parentheses) are used to group expressions and to 
+    indicate the order in which operations should be performed. 
+    For example, to evaluate (2 + 3) * 4, 
+    you would first add 2 and 3, 
+    then multiply the result by 4 to get 20.""")
 
         elif target == ".":
             self.helpwindow.title("Usage: Point (.)")
-            operator_label.configure(text="Point (.)")
+            operator_label.configure(text="""
+'.' (dot or decimal point) is used to separate the integer part of 
+a number from its decimal part in decimal notation. 
+For example, 3.14 represents the number 
+'three and fourteen hundredths'""")
 
         else:
             return
@@ -341,9 +384,6 @@ class Calculator:
             except ValueTooLongError as e:
                 label.configure(text=e)
 
-            except ZeroDivisionError as e:
-                label.configure(text=e)
-
             self.app.update()
             return
 
@@ -375,17 +415,19 @@ class Calculator:
             master=self.app, text="", width=290, height=60, font=("Arial", 30))
         small_label.place(relx=0.5, rely=0.05, anchor=tkinter.CENTER)
 
-        label_img = customtkinter.CTkImage(light_image=Image.open(os.path.join(os.path.dirname(__file__), 'light_shadow.png')),
+        label_img = customtkinter.CTkImage(light_image=Image.open(os.path.join(
+                                            os.path.dirname(__file__), 'light_shadow.png')),
                                            dark_image=Image.open(os.path.join(
-                                               os.path.dirname(__file__), 'shadow.png')),
+                                            os.path.dirname(__file__), 'shadow.png')),
                                            size=(425, 105))
         label = customtkinter.CTkLabel(master=self.app, image=label_img, text="", width=425, height=100,
                                        font=("Arial", 60))
         label.place(relx=0.5, rely=0.18, anchor=tkinter.CENTER)
 
-        img_theme = customtkinter.CTkImage(light_image=Image.open(os.path.join(os.path.dirname(__file__), "night-mode.png")),
+        img_theme = customtkinter.CTkImage(light_image=Image.open(os.path.join(
+                                            os.path.dirname(__file__), "night-mode.png")),
                                            dark_image=Image.open(os.path.join(
-                                               os.path.dirname(__file__), "brightness.png")),
+                                            os.path.dirname(__file__), "brightness.png")),
                                            size=(30, 30))
         buttonChangeTheme = customtkinter.CTkButton(master=self.app, image=img_theme, text="",
                                                     command=lambda: self.change_theme(), fg_color="transparent",
@@ -475,9 +517,10 @@ class Calculator:
                                              fg_color="transparent", text_color=("black", "white"), font=("Arial", 40))
         buttonZero.place(relx=0.38, rely=0.92, anchor=tkinter.CENTER)
 
-        img_radical = customtkinter.CTkImage(light_image=Image.open(os.path.join(os.path.dirname(__file__), 'root.png')),
+        img_radical = customtkinter.CTkImage(light_image=Image.open(os.path.join(
+                                                os.path.dirname(__file__), 'root.png')),
                                              dark_image=Image.open(os.path.join(
-                                                 os.path.dirname(__file__), 'root.png')),
+                                                os.path.dirname(__file__), 'root.png')),
                                              size=(40, 40))
         buttonRadical = customtkinter.CTkButton(master=self.app, image=img_radical, text="",
                                                 command=lambda: self.label_changer(
@@ -521,9 +564,10 @@ class Calculator:
                                               fg_color="transparent", text_color="red", font=("Arial", 40))
         buttonClear.place(relx=0.62, rely=0.92, anchor=tkinter.CENTER)
 
-        img_factorial = customtkinter.CTkImage(light_image=Image.open(os.path.join(os.path.dirname(__file__), 'factorial.png')),
+        img_factorial = customtkinter.CTkImage(light_image=Image.open(os.path.join(
+                                                os.path.dirname(__file__), 'factorial.png')),
                                                dark_image=Image.open(os.path.join(
-                                                   os.path.dirname(__file__), 'factorial.png')),
+                                                os.path.dirname(__file__), 'factorial.png')),
                                                size=(40, 40))
         buttonFactorial = customtkinter.CTkButton(master=self.app, image=img_factorial, text="",
                                                   command=lambda: self.label_changer(
@@ -585,4 +629,3 @@ class Calculator:
         """
 
         self.app.mainloop()
-

@@ -1,0 +1,4 @@
+Pavlo Butenko 100 (profiling, uživatelská dokumentace, prezentace)
+xkolia00 100 (mat. operace, unit testy, komentáře)
+xpodho08 100 (implementace návrhu, systémové testy)
+xturyt00 100 (parser, testy, doxygen, grafický návrh, plan, integrační testy)

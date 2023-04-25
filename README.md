@@ -1,9 +1,16 @@
-# university-project-ivs-2
-IVS team project.
+## Prostredi
 
-## Contributors
+Ubuntu 64bit
+Windows 64bit
 
-[xbuten00](https://github.com/PaBut)
-[xkolia00](https://github.com/nikitakoliada)
-[xpodho08](https://github.com/max0n1x)
-[xturyt00](https://github.com/turytsia)
+## Autori
+
+Tripple-Double
+- xbuten00 Pavlo Butenko
+- xkolia00 Nikita Koliada
+- xpodho08 Maksym Podhornyi
+- xturyt00 Oleksandr Turytsia
+
+## Licence
+
+Tento program je poskytovan GNU GPL v. 3

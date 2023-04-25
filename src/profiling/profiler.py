@@ -17,6 +17,7 @@
 import cProfile
 from ..math import ivs_math as math
 
+
 def count(list: list) -> int:
     """ Counts list elements
         @param list
@@ -27,7 +28,8 @@ def count(list: list) -> int:
         list_count = math.sum(list_count, 1)
     return list_count
 
-def avg(list : list) -> list:
+
+def avg(list: list) -> list:
     """ Calculates average value from list
         @param list
         @return  average value
@@ -36,6 +38,7 @@ def avg(list : list) -> list:
     for item in list:
         sum = math.sum(sum, item)
     return (math.div(sum, count(list)))
+
 
 def formule(list: list) -> list:
     """ Applies formula in order to analyze math functions
@@ -53,13 +56,13 @@ def formule(list: list) -> list:
     return s
 
 
-
 def main():
     """ Init function
         """
-    input_numbers = list(map(int,input().split()))
+    input_numbers = list(map(int, input().split()))
     print("Average value is " + str(avg(input_numbers)))
     print("S = " + str(formule(input_numbers)))
+
 
 if __name__ == '__main__':
     cProfile.run('main()', sort='time')
