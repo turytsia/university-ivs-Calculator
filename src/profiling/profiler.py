@@ -14,8 +14,17 @@
 
 # Functions
 
+import os
+import sys
+import platform
 import cProfile
-from ..math import ivs_math as math
+
+if platform.system() == "Windows":
+    sys.path.append(os.getcwd())
+else:
+    sys.path.append(os.path.dirname(os.path.abspath("") + "/src"))
+
+import src.math.ivs_math as math
 
 
 def count(list: list) -> int:

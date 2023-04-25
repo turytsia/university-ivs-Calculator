@@ -1,6 +1,4 @@
 ## Prostredi
-
-Ubuntu 64bit
 Windows 64bit
 
 ## Autori
@@ -13,4 +11,4 @@ Tripple-Double
 
 ## Licence
 
-Tento program je poskytovan GNU GPL v. 3
+Tento program je poskytovan GNU General Public License v3.0.
