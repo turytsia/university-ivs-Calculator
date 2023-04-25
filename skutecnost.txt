@@ -1,0 +1,2 @@
+We thought parser wasn't that hard, so we planned a lot of math functions but eventually we barely made what task required.
+Some of the mockups had gradient which was not implemented since "It took too much time"

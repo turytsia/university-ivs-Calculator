@@ -2,3 +2,6 @@ html/
 latex/
 rtf/
 *.pyc
+build
+dist/
+*.spec
