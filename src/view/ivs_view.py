@@ -297,6 +297,8 @@ class Calculator:
         self.app.title("Calculator")
         self.app.geometry("425x675")
         self.app.resizable(False, False)
+        self.app.iconphoto(False, tkinter.Image("photo", file=os.path.join(
+                            os.path.dirname(__file__), 'logo.png')))
 
         # tooltip window
         self.tooltips = None
@@ -347,7 +349,7 @@ class Calculator:
                 add (str): The value or operation to add to the label.
         """
 
-        if add == "h" or add == "H":
+        if add.lower() == "h":
             self.create_help_window()
             return
 
